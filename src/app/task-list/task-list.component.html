@@ -9,6 +9,7 @@
 >
   <thead>
     <tr>
+      <th nzWidth="1rem">ردیف</th>
       <th nzColumnKey="title" [nzSortFn]="true">عنوان</th>
       <th nzColumnKey="day" [nzSortFn]="true">روز</th>
       <th nzColumnKey="date" [nzSortFn]="true">تاریخ</th>
@@ -17,10 +18,12 @@
       <th nzColumnKey="unit" [nzSortFn]="true">نام مسئول</th>
       <th nzWidth="5rem" nzColumnKey="state" [nzSortFn]="true">آخرین وضعیت</th>
       <th nzColumnKey="endHour" [nzSortFn]="true">ساعت واقعی انجام</th>
+      <th>ویرایش</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of listOfRandomUser">
+    <tr *ngFor="let data of listOfRandomUser; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ data.title }}</td>
       <td>{{ getDay(data.day) }}</td>
       <td>{{ data.date }}</td>
@@ -42,6 +45,11 @@
         </nz-tag>
       </td>
       <td>{{ data.endHour }}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="openEditModal(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+      </td>
     </tr>
   </tbody>
 </nz-table>

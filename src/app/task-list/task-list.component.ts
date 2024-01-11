@@ -1,9 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 import { DayEnum, TaskStateEnum } from './task-list-enums';
 
 interface RandomUser {
@@ -64,6 +66,16 @@ export class TaskListComponent implements OnInit {
   loading = true;
   pageSize = 100;
   pageIndex = 1;
+  selectedRowData: RandomUser = {
+    title: '',
+    state: null,
+    date: '',
+    startHour: '',
+    endHour: '',
+    day: null,
+    unit: '',
+    responsibleUnit: '',
+  };
 
   loadDataFromServer(
     pageIndex: number,
@@ -88,7 +100,10 @@ export class TaskListComponent implements OnInit {
     this.loadDataFromServer(pageIndex, pageSize, sortField, filter);
   }
 
-  constructor(private randomUserService: RandomUserService) {}
+  constructor(
+    private randomUserService: RandomUserService,
+    private modalService: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.loadDataFromServer(this.pageIndex, this.pageSize, null, []);
@@ -101,5 +116,35 @@ export class TaskListComponent implements OnInit {
 
   getDay(day: DayEnum) {
     return (DayEnum as any)[day];
+  }
+
+  saveChangesInModal(updatedData: RandomUser) {
+    const index = this.listOfRandomUser.findIndex(
+      (item) => item === this.selectedRowData
+    );
+    this.listOfRandomUser[index] = { ...updatedData };
+  }
+
+  openEditModal(data: RandomUser) {
+    this.selectedRowData = { ...data };
+
+    this.modalService.create({
+      nzTitle: 'ویرایش  ',
+      nzContent: EditTaskComponent,
+      nzComponentParams: {
+        data,
+      },
+      nzFooter: [
+        {
+          label: 'بستن',
+          onClick: (componentInstance) => componentInstance?.destroyModal(),
+        },
+        {
+          label: 'ثبت',
+          type: 'primary',
+          onClick: (componentInstance) => console.log(componentInstance),
+        },
+      ],
+    });
   }
 }
