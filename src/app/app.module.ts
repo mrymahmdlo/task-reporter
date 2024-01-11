@@ -23,6 +23,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 
 registerLocaleData(en);
@@ -42,6 +43,7 @@ registerLocaleData(en);
     NzPageHeaderModule,
     NzIconModule,
     NzTableModule,
+    NzTagModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

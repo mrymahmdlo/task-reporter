@@ -25,7 +25,22 @@
   <tbody>
     <tr *ngFor="let data of listOfRandomUser">
       <td>{{ data.title }}</td>
-      <td>{{ getState(data.state) }}</td>
+      <td>
+          <nz-tag *ngIf="data.state === 'DONE'" nzColor="success">
+        <span nz-icon nzType="check-circle"></span>
+        <span>{{ getState(data.state) }}</span>
+      </nz-tag>
+
+               <nz-tag *ngIf="data.state === 'DOING'"  nzColor="processing">
+        <span nz-icon nzType="sync" nzSpin></span>
+        <span>{{ getState(data.state) }}</span>
+      </nz-tag>
+
+                  <nz-tag *ngIf="data.state === 'WAITING'" nzColor="warning">
+        <span nz-icon nzType="clock-circle"></span>
+        <span>{{ getState(data.state) }}</span>
+      </nz-tag>
+       </td>
             <td>{{ getDay(data.day) }}</td>
       <td>{{ data.date }}</td>
 <td>{{ data.startHour }}</td>
