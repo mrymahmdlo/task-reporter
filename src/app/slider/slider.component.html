@@ -31,7 +31,7 @@
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             (click)="isCollapsed = !isCollapsed"
           ></span>
-          <span style="font-weight: bolder;">
+          <span style="font-weight: bolder">
             برنامه زمانبندی مهاجرت سامانه های بانکی بانک کارآفرین
           </span>
         </div>
@@ -45,7 +45,7 @@
       <nz-breadcrumb>
         <!-- <nz-breadcrumb-item>لیست تسک ها</nz-breadcrumb-item> -->
       </nz-breadcrumb>
-      <div class="inner-content"><app-task-list></app-task-list></div>
+      <div class="inner-content"><router-outlet></router-outlet></div>
     </nz-content>
     <nz-footer
       >تمامی حقوق این سایت متعلق به شرکت نگاه بانک کارآفرین می‌باشد.</nz-footer
