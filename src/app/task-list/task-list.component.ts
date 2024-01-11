@@ -14,6 +14,7 @@ interface RandomUser {
   endHour: string;
   day: any;
   unit: string;
+  responsibleUnit: string;
 }
 
 interface tableData {
@@ -61,12 +62,8 @@ export class TaskListComponent implements OnInit {
   total = 1;
   listOfRandomUser: RandomUser[] = [];
   loading = true;
-  pageSize = 10;
+  pageSize = 100;
   pageIndex = 1;
-  filterGender = [
-    { text: 'male', value: 'male' },
-    { text: 'female', value: 'female' },
-  ];
 
   loadDataFromServer(
     pageIndex: number,
@@ -85,7 +82,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
-    console.log(params);
     const { pageSize, pageIndex, sort, filter } = params;
     const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
@@ -96,14 +92,14 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDataFromServer(this.pageIndex, this.pageSize, null, []);
+    console.log(this.pageSize);
   }
 
   getState(state: TaskStateEnum) {
     return (TaskStateEnum as any)[state];
   }
 
-    getDay(day: DayEnum) {
+  getDay(day: DayEnum) {
     return (DayEnum as any)[day];
   }
-
 }

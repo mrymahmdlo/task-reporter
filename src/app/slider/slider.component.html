@@ -1,6 +1,6 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-    <div class="logo"></div>
+    <div class="logo"><img src="../../assets/logo.png" width="50px" /></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <!-- <li nz-submenu nzTitle="User" nzIcon="user">
         <ul>
@@ -23,12 +23,21 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <span
-        class="trigger"
-        nz-icon
-        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        (click)="isCollapsed = !isCollapsed"
-      ></span>
+      <div class="header-item">
+        <div>
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            (click)="isCollapsed = !isCollapsed"
+          ></span>
+          <span>برنامه روز مهاجرت</span>
+        </div>
+        <div class="logos">
+          <span><img src="../../assets/logo.png" width="70px" /></span>
+          <span><img src="../../assets/bank-logo.png" width="70px" /></span>
+        </div>
+      </div>
     </nz-header>
     <nz-content>
       <nz-breadcrumb>
@@ -36,6 +45,8 @@
       </nz-breadcrumb>
       <div class="inner-content"><app-task-list></app-task-list></div>
     </nz-content>
-    <nz-footer>نگاه بانک کارآفرین</nz-footer>
+    <nz-footer
+      >تمامی حقوق این سایت متعلق به شرکت نگاه بانک کارآفرین می‌باشد.</nz-footer
+    >
   </nz-layout>
 </nz-layout>

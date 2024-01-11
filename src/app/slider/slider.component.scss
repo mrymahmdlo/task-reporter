@@ -12,8 +12,19 @@
 
 .logo {
   height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.736);
   margin: 16px;
+}
+
+.header-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logos {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
 }
 
 nz-header {

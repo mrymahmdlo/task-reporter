@@ -4,49 +4,44 @@
   [nzLoading]="loading"
   [nzTotal]="total"
   [nzPageIndex]="pageIndex"
+  [nzPageSize]="pageSize"
   (nzQueryParams)="onQueryParamsChange($event)"
-  pagination=
 >
   <thead>
     <tr>
       <th nzColumnKey="title" [nzSortFn]="true">عنوان</th>
-      <th nzColumnKey="state" [nzFilters]="filterGender" [nzFilterFn]="true">
-        وضعیت
-      </th>
-                  <th nzColumnKey="day" [nzSortFn]="true">روز</th>
-
-            <th nzColumnKey="date" [nzSortFn]="true">تاریخ</th>
-<th nzColumnKey="startHour" [nzSortFn]="true">ساعت شروع</th>
-            <th nzColumnKey="endHour" [nzSortFn]="true">ساعت پایان</th>
-            <th nzColumnKey="unit" [nzSortFn]="true">متولی</th>
-
+      <th nzColumnKey="day" [nzSortFn]="true">روز</th>
+      <th nzColumnKey="date" [nzSortFn]="true">تاریخ</th>
+      <th nzColumnKey="startHour" [nzSortFn]="true">ساعت</th>
+      <th nzColumnKey="responsibleUnit" [nzSortFn]="true">واحد مسئول</th>
+      <th nzColumnKey="unit" [nzSortFn]="true">نام مسئول</th>
+      <th nzWidth="5rem" nzColumnKey="state" [nzSortFn]="true">آخرین وضعیت</th>
+      <th nzColumnKey="endHour" [nzSortFn]="true">ساعت واقعی انجام</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of listOfRandomUser">
       <td>{{ data.title }}</td>
-      <td>
-          <nz-tag *ngIf="data.state === 'DONE'" nzColor="success">
-        <span nz-icon nzType="check-circle"></span>
-        <span>{{ getState(data.state) }}</span>
-      </nz-tag>
-
-               <nz-tag *ngIf="data.state === 'DOING'"  nzColor="processing">
-        <span nz-icon nzType="sync" nzSpin></span>
-        <span>{{ getState(data.state) }}</span>
-      </nz-tag>
-
-                  <nz-tag *ngIf="data.state === 'WAITING'" nzColor="warning">
-        <span nz-icon nzType="clock-circle"></span>
-        <span>{{ getState(data.state) }}</span>
-      </nz-tag>
-       </td>
-            <td>{{ getDay(data.day) }}</td>
+      <td>{{ getDay(data.day) }}</td>
       <td>{{ data.date }}</td>
-<td>{{ data.startHour }}</td>
-      <td>{{ data.endHour }}</td>
+      <td>{{ data.startHour }}</td>
+      <td>{{ data.responsibleUnit }}</td>
       <td>{{ data.unit }}</td>
-
+      <td>
+        <nz-tag *ngIf="data.state === 'DONE'" nzColor="success">
+          <span nz-icon nzType="check-circle"></span>
+          <span>{{ getState(data.state) }}</span>
+        </nz-tag>
+        <nz-tag *ngIf="data.state === 'DOING'" nzColor="processing">
+          <span nz-icon nzType="sync" nzSpin></span>
+          <span>{{ getState(data.state) }}</span>
+        </nz-tag>
+        <nz-tag *ngIf="data.state === 'WAITING'" nzColor="warning">
+          <span nz-icon nzType="clock-circle"></span>
+          <span>{{ getState(data.state) }}</span>
+        </nz-tag>
+      </td>
+      <td>{{ data.endHour }}</td>
     </tr>
   </tbody>
 </nz-table>
