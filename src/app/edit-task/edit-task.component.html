@@ -1,2 +1,64 @@
-<div class="modal">
+<div style="gap: 10px; display: grid" class="modal">
+  <nz-input-group nzAddOnBefore="عنوان">
+    <input nz-input placeholder="عنوان" [(ngModel)]="data.title" type="text" />
+  </nz-input-group>
+  <nz-input-group nzAddOnBefore="روز">
+    <nz-select style="width: 100%;" [(ngModel)]="data.day" placeholder="انتخاب روز">
+      <nz-option
+        *ngFor="let day of enumDayKeys"
+        [nzLabel]="day.label"
+        [nzValue]="day.value"
+      ></nz-option>
+    </nz-select>
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="تاریخ">
+    <input nz-input placeholder=" تاریخ" [(ngModel)]="data.date" type="text" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="ساعت">
+    <input
+      nz-input
+      placeholder=" ساعت"
+      [(ngModel)]="data.startHour"
+      type="text"
+    />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="واحد مسئول">
+    <input
+      nz-input
+      placeholder="واحد مسئول "
+      [(ngModel)]="data.responsibleUnit"
+      type="text"
+    />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="نام مسئول">
+    <input
+      nz-input
+      placeholder="نام مسئول "
+      [(ngModel)]="data.unit"
+      type="text"
+    />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="وضعیت">
+    <nz-select style="width: 100%;" [(ngModel)]="data.state" placeholder="انتخاب وضعیت">
+      <nz-option
+        *ngFor="let state of enumStateKeys"
+        [nzLabel]="state.label"
+        [nzValue]="state.value"
+      ></nz-option>
+    </nz-select>
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="ساعت واقعی انجام">
+    <input
+      nz-input
+      placeholder=" ساعت واقعی انجام"
+      [(ngModel)]="data.endHour"
+      type="text"
+    />
+  </nz-input-group>
 </div>

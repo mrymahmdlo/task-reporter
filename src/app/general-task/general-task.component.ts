@@ -1,10 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { DayEnum, TaskStateEnum } from './task-list-enums';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { DayEnum, TaskStateEnum } from '../task-list/task-list-enums';
 
 interface RandomUser {
   id: number;
@@ -51,15 +54,21 @@ export class RandomUserService {
       .pipe(catchError(() => of()));
   }
 
+  updateUsers(data: RandomUser): Observable<RandomUser> {
+    return this.http
+      .put<RandomUser>(`${this.randomUserUrl}` + 'updateTask', data)
+      .pipe(catchError(() => of()));
+  }
+
   constructor(private http: HttpClient) {}
 }
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss'],
+  selector: 'app-general-task',
+  templateUrl: './general-task.component.html',
+  styleUrls: ['./general-task.component.scss'],
 })
-export class TaskListComponent implements OnInit {
+export class GeneralTaskComponent implements OnInit {
   total = 1;
   listOfRandomUser: RandomUser[] = [];
   loading = true;
@@ -100,7 +109,11 @@ export class TaskListComponent implements OnInit {
     this.loadDataFromServer(pageIndex, pageSize, sortField, filter);
   }
 
-  constructor(private randomUserService: RandomUserService) {}
+  constructor(
+    private randomUserService: RandomUserService,
+    private modalService: NzModalService,
+    private message: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadDataFromServer(this.pageIndex, this.pageSize, null, []);
@@ -112,5 +125,38 @@ export class TaskListComponent implements OnInit {
 
   getDay(day: DayEnum) {
     return (DayEnum as any)[day];
+  }
+
+  updateTask(data: RandomUser) {
+    this.loading = true;
+    this.randomUserService.updateUsers(data).subscribe(() => {
+      this.loading = false;
+      this.message.success('با موفقیت ویرایش شد');
+    });
+  }
+  openEditModal(data: RandomUser) {
+    this.selectedRowData = { ...data };
+
+    this.modalService.create({
+      nzTitle: 'ویرایش  ',
+      nzContent: EditTaskComponent,
+      nzComponentParams: {
+        data,
+      },
+      nzFooter: [
+        {
+          label: 'بستن',
+          onClick: (componentInstance) => componentInstance?.destroyModal(),
+        },
+        {
+          label: 'ثبت',
+          type: 'primary',
+          onClick: (componentInstance) => {
+            this.updateTask(data);
+            componentInstance?.destroyModal();
+          },
+        },
+      ],
+    });
   }
 }

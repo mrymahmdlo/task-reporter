@@ -18,6 +18,7 @@
       <th nzColumnKey="unit" [nzSortFn]="true">نام مسئول</th>
       <th nzWidth="5rem" nzColumnKey="state" [nzSortFn]="true">آخرین وضعیت</th>
       <th nzColumnKey="endHour" [nzSortFn]="true">ساعت واقعی انجام</th>
+      <th>ویرایش</th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +45,11 @@
         </nz-tag>
       </td>
       <td>{{ data.endHour }}</td>
-
+      <td>
+        <button nz-button nzType="primary" (click)="openEditModal(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+      </td>
     </tr>
   </tbody>
 </nz-table>
