@@ -2,22 +2,22 @@
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu nzTitle="User" nzIcon="user">
+      <!-- <li nz-submenu nzTitle="User" nzIcon="user">
         <ul>
           <li nz-menu-item>Tom</li>
           <li nz-menu-item>Bill</li>
           <li nz-menu-item>Alex</li>
         </ul>
-      </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
+      </li> -->
+      <!-- <li nz-submenu nzTitle="Team" nzIcon="team">
         <ul>
           <li nz-menu-item>Team 1</li>
           <li nz-menu-item>Team 2</li>
         </ul>
-      </li>
-      <li nz-menu-item>
+      </li> -->
+      <li dir="ltr" nz-menu-item>
         <span nz-icon nzType="file"></span>
-        <span>File</span>
+        <span>لیست تسک ها</span>
       </li>
     </ul>
   </nz-sider>
@@ -32,11 +32,10 @@
     </nz-header>
     <nz-content>
       <nz-breadcrumb>
-        <nz-breadcrumb-item>User</nz-breadcrumb-item>
-        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+        <nz-breadcrumb-item>لیست تسک ها</nz-breadcrumb-item>
       </nz-breadcrumb>
-      <div class="inner-content">Bill is a cat.</div>
+      <div class="inner-content"><app-task-list></app-task-list></div>
     </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+    <nz-footer>نگاه بانک کارآفرین</nz-footer>
   </nz-layout>
 </nz-layout>

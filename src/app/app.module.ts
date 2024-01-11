@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderComponent } from './slider/slider.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 
 
@@ -21,12 +22,13 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, SliderComponent],
+  declarations: [AppComponent, SliderComponent, TaskListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,6 +41,7 @@ registerLocaleData(en);
     NzMenuModule,
     NzPageHeaderModule,
     NzIconModule,
+    NzTableModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
